@@ -1,0 +1,257 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap");
+
+:root {
+  --paper: #e9eff6;
+  --card: #ffffff;
+  --ink: #1b2640;
+  --muted: #7a879e;
+  --line: #d5deeb;
+  --cobalt: #2c59e8;
+  --cobalt-dark: #2146bd;
+  --danger: #c43d4b;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #121a2b;
+    --card: #1b2640;
+    --ink: #e8eef9;
+    --muted: #8d9ab3;
+    --line: #2d3b5c;
+    --cobalt: #6f93ff;
+    --cobalt-dark: #8ba7ff;
+    --danger: #ff7b88;
+    color-scheme: dark;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Bricolage Grotesque", system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.5;
+  display: block; /* overrides Vite template's flex centering */
+}
+
+.app {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+}
+
+.app__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.app__header h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 9vw, 3.75rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.app__count {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+/* Add form */
+.add {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.add__input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.8rem 1rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+}
+
+.add__input::placeholder {
+  color: var(--muted);
+}
+
+.add__input:focus-visible,
+.item__edit:focus-visible {
+  outline: 3px solid var(--cobalt);
+  outline-offset: 1px;
+}
+
+/* Buttons */
+.btn {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  border-radius: 10px;
+}
+
+.btn:focus-visible,
+.filters__btn:focus-visible,
+.item__check:focus-visible {
+  outline: 3px solid var(--cobalt);
+  outline-offset: 2px;
+}
+
+.btn--primary {
+  padding: 0.8rem 1.4rem;
+  font-weight: 600;
+  color: #fff;
+  background: var(--cobalt);
+}
+
+.btn--primary:hover {
+  background: var(--cobalt-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  .btn--primary {
+    color: #0d1424;
+  }
+}
+
+.btn--ghost {
+  padding: 0.3rem 0.6rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+  background: transparent;
+}
+
+.btn--ghost:hover {
+  color: var(--ink);
+  background: var(--line);
+}
+
+.btn--danger:hover {
+  color: var(--danger);
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+  border-bottom: 1.5px solid var(--line);
+}
+
+.filters__btn {
+  padding: 0.5rem 0.9rem;
+  font: inherit;
+  color: var(--muted);
+  background: none;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1.5px;
+  cursor: pointer;
+}
+
+.filters__btn:hover {
+  color: var(--ink);
+}
+
+.filters__btn.is-active {
+  color: var(--ink);
+  font-weight: 600;
+  border-bottom-color: var(--cobalt);
+}
+
+/* List */
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  background: var(--card);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+}
+
+.item__check {
+  width: 1.25rem;
+  height: 1.25rem;
+  flex-shrink: 0;
+  accent-color: var(--cobalt);
+  cursor: pointer;
+}
+
+.item__text {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  cursor: text;
+}
+
+.item.is-done .item__text {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.item__edit {
+  flex: 1;
+  min-width: 0;
+  padding: 0.25rem 0.5rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1.5px solid var(--cobalt);
+  border-radius: 6px;
+}
+
+.item__actions {
+  display: flex;
+  gap: 0.15rem;
+  flex-shrink: 0;
+}
+
+.empty {
+  padding: 2rem 0;
+  text-align: center;
+  color: var(--muted);
+}
+
+.app__footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+@media (max-width: 420px) {
+  .item {
+    flex-wrap: wrap;
+  }
+  .item__actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
